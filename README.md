@@ -6,3 +6,5 @@ Dependencies are bc and xxd, which can be installed on Ubuntu/Debian based syste
 Invoke with the name of the wallet file you'd like to scan. Possible z-keys will be printed to the console.
 
 Example: `./scanforkeys.sh wallet.dat`
+
+This is untested, but this script should also work for sapling keys for Komodo/Pirate/ZCash, and others.
