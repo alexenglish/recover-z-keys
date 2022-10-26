@@ -20,10 +20,11 @@ fi
 
 echo "If any possible keys are found they will be printed to this terminal." 1>&2
 echo "If you would like to capture them to a file use shell redirection - ./scanforkeys.sh wallet.dat > keys" 1>&2
+echo "Help text is on STDERR, only the possible keys will be printed to STDOUT (and captured with simple redirection)" 1>&2
 echo
 grep -obUaP "\x28\x00\x01\x07\x73\x61\x70\x7a\x6b\x65\x79" "$1" | while read L; do
     ENDOFFSET="$(cut -d: -f1 <<<"$L")"
     STARTOFFSET="$(bc<<<"$ENDOFFSET - 169")"
-    echo "Found a possible key:"
+    echo "Found a possible key:" 1>&2
     dd skip=$STARTOFFSET count=169 bs=1 if="$1" status=none | xxd -p -c 256
 done    
